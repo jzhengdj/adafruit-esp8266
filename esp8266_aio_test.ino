@@ -23,14 +23,14 @@
 #define DHTTYPE DHT22 
 
 // WiFi parameters
-#define WLAN_SSID       "WLAN_SSID"
-#define WLAN_PASS       "WLAN_PASS"
+#define WLAN_SSID       "Guest@Rigel"
+#define WLAN_PASS       "Rigel6288"
 
 // Adafruit IO
 #define AIO_SERVER      "io.adafruit.com"
 #define AIO_SERVERPORT  1883
-#define AIO_USERNAME    "AIO_USERNAME"
-#define AIO_KEY         "AIO_KEY"
+#define AIO_USERNAME    "jzhengdj"
+#define AIO_KEY         "833f843e807046d28c6daccdb6f61c77"
 
 // DHT sensor
 DHT dht(DHTPIN, DHTTYPE, 15);
@@ -65,8 +65,8 @@ Adafruit_MQTT_Publish humidity = Adafruit_MQTT_Publish(&mqtt, HUMIDITY_FEED);
 
 void setup() {
 
-  // Init sensor
-  dht.begin();
+  // Init sensor, omit in this function.
+  //dht.begin();
 
   Serial.begin(115200);
   Serial.println(F("Adafruit IO Example"));
@@ -103,9 +103,11 @@ void loop() {
   }
 
   // Grab the current state of the sensor
-  int humidity_data = (int)dht.readHumidity();
-  int temperature_data = (int)dht.readTemperature();
+//  int humidity_data = (int)dht.readHumidity();
+//  int temperature_data = (int)dht.readTemperature();
 
+  int humidity_data = 70;
+  int temperature_data = 22;
   // Publish data
   if (! temperature.publish(temperature_data))
     Serial.println(F("Failed to publish temperature"));
